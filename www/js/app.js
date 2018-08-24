@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
@@ -22,5 +22,15 @@ angular.module('starter', ['ionic'])
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
+
+    var div = document.getElementById("map_canvas");
+    $rootScope.map = plugin.google.maps.Map.getMap(div,{
+        'gestures' : {
+            'scroll': true,
+            'tilt' : true,
+            'rotate' : true,
+            'zoom' : true
+        }
+    });
   });
 })
